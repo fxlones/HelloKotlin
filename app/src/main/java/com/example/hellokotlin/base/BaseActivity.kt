@@ -1,5 +1,7 @@
 package com.example.hellokotlin.base
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -10,11 +12,17 @@ import java.util.logging.Logger
  * @author FanXl
  * Description : Activity基类
  */
-open class BaseActivity : AppCompatActivity() {
-    val TAG = this::class.java.simpleName;
+open abstract class BaseActivity : AppCompatActivity() {
+    val TAG = this::class.java.simpleName
+    lateinit var mContext: Context
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        mContext = this;
+        setContentView(getLyoutIt())
     }
+
+    abstract fun getLyoutIt(): Int
+
 
 }
